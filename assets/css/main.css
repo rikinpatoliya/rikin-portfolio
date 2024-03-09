@@ -2810,6 +2810,10 @@ h6 {
   background-size: cover;
 }
 
+.bg-size-contain {
+  background-size: contain;
+}
+
 .bg-fixed {
   background-attachment: fixed;
 }
