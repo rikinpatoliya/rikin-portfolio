@@ -290,6 +290,10 @@ function elisc_tm_modalbox_portfolio() {
 		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="assets/img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="' + image + '"></div></div>');
 		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><span class="category">' + category + '</span><h3 class="title">' + title + '</h3></div>');
 		elisc_tm_data_images();
+		setTimeout(function () {
+			console.log("in");
+			portfolio_popup_carousel();
+		}, 501);
 		return false;
 	});
 }
@@ -539,7 +543,7 @@ function elisc_tm_owl_carousel() {
 	});
 	elisc_tm_imgtosvg();
 
-	var carousel3 = jQuery('.elisc_tm_portfolio .owl-carousel');
+	/* var carousel3 = jQuery('.elisc_tm_portfolio .owl-carousel');
 
 	var rtlMode = false;
 
@@ -580,6 +584,60 @@ function elisc_tm_owl_carousel() {
 		});
 		// Go to the previous item
 		element.closest('.elisc_tm_portfolio').find('.prev_button').click(function () {
+			// With optional speed parameter
+			// Parameters has to be in square bracket '[]'
+			element.trigger('prev.owl.carousel');
+			return false;
+		});
+
+	}); */
+}
+
+// -------------------------------------------------
+// --------------   PORTFOLIO CAROUSEL  -------------------
+// -------------------------------------------------
+
+function portfolio_popup_carousel() {
+	var carousel4 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
+	var rtlMode = false;
+
+	if (jQuery('body').hasClass('rtl')) {
+		rtlMode = 'true';
+	}
+
+	carousel4.each(function () {
+		var element = jQuery(this);
+
+		element.owlCarousel({
+			loop: false,
+			items: 3,
+			lazyLoad: false,
+			margin: 30,
+			autoplay: false,
+			autoplayTimeout: 7000,
+			rtl: rtlMode,
+			dots: true,
+			nav: false,
+			navSpeed: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				1040: {
+					items: 3
+				}
+			}
+		});
+
+		element.closest('.popup_details .portfolio_list1').find('.popup_next_button').click(function () {
+			element.trigger('next.owl.carousel');
+			return false;
+		});
+		// Go to the previous item
+		element.closest('.popup_details .portfolio_list1').find('.popup_prev_button').click(function () {
 			// With optional speed parameter
 			// Parameters has to be in square bracket '[]'
 			element.trigger('prev.owl.carousel');
