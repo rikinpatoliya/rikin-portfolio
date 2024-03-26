@@ -285,15 +285,15 @@ function elisc_tm_modalbox_portfolio() {
 		var category = parent.find('.details .category').html();
 		var title = parent.find('.details .title a').text();
 
+
 		modalBox.addClass('opened');
 		modalBox.find('.description_wrap').html(details);
 		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="assets/img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="' + image + '"></div></div>');
 		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><span class="category">' + category + '</span><h3 class="title">' + title + '</h3></div>');
 		elisc_tm_data_images();
-		setTimeout(function () {
-			console.log("in");
-			portfolio_popup_carousel();
-		}, 501);
+		// var hasCarousel = modalBox.hasClass('.owl-carousel');
+		// console.log(hasCarousel);
+		portfolio_popup_carousel();
 		return false;
 	});
 }
@@ -543,7 +543,7 @@ function elisc_tm_owl_carousel() {
 	});
 	elisc_tm_imgtosvg();
 
-	/* var carousel3 = jQuery('.elisc_tm_portfolio .owl-carousel');
+	/* var carousel3 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
 
 	var rtlMode = false;
 
@@ -558,7 +558,7 @@ function elisc_tm_owl_carousel() {
 			loop: false,
 			items: 3,
 			lazyLoad: false,
-			margin: 30,
+			margin: 10,
 			autoplay: true,
 			autoplayTimeout: 7000,
 			rtl: rtlMode,
@@ -589,7 +589,6 @@ function elisc_tm_owl_carousel() {
 			element.trigger('prev.owl.carousel');
 			return false;
 		});
-
 	}); */
 }
 
@@ -597,54 +596,57 @@ function elisc_tm_owl_carousel() {
 // --------------   PORTFOLIO CAROUSEL  -------------------
 // -------------------------------------------------
 
+
+// var isBind = false;
 function portfolio_popup_carousel() {
-	var carousel4 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
-	var rtlMode = false;
 
-	if (jQuery('body').hasClass('rtl')) {
-		rtlMode = 'true';
-	}
+	// if (isBind) {
+	// 	return;
+	// }
+	// isBind = true;
+	// var carousel4 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
 
-	carousel4.each(function () {
-		var element = jQuery(this);
 
-		element.owlCarousel({
-			loop: false,
-			items: 3,
-			lazyLoad: false,
-			margin: 30,
-			autoplay: false,
-			autoplayTimeout: 7000,
-			rtl: rtlMode,
-			dots: true,
-			nav: false,
-			navSpeed: false,
-			responsive: {
-				0: {
-					items: 1
-				},
-				768: {
-					items: 2
-				},
-				1040: {
-					items: 3
-				}
+	// carousel4.each(function () {
+	// 	var element = jQuery(this);
+	// element.trigger('destroy.owl.carousel');
+	$(".owl-carousel").owlCarousel({
+		loop: false,
+		items: 3,
+		lazyLoad: false,
+		margin: 10,
+		autoplay: false,
+		autoplayTimeout: 7000,
+		rtl: false,
+		dots: true,
+		nav: false,
+		navSpeed: false,
+		responsive: {
+			0: {
+				items: 1
+			},
+			768: {
+				items: 2
+			},
+			1040: {
+				items: 3
 			}
-		});
-
-		element.closest('.popup_details .portfolio_list1').find('.popup_next_button').click(function () {
-			element.trigger('next.owl.carousel');
-			return false;
-		});
-		// Go to the previous item
-		element.closest('.popup_details .portfolio_list1').find('.popup_prev_button').click(function () {
-			// With optional speed parameter
-			// Parameters has to be in square bracket '[]'
-			element.trigger('prev.owl.carousel');
-			return false;
-		});
-
+		}
 	});
+
+	element.closest('.popup_details').find('.popup_next_button').click(function () {
+		element.trigger('next.owl.carousel');
+		return false;
+	});
+	// Go to the previous item
+	element.closest('.popup_details').find('.popup_prev_button').click(function () {
+		// With optional speed parameter
+		// Parameters has to be in square bracket '[]'
+		element.trigger('prev.owl.carousel');
+		return false;
+	});
+
+	// });
 }
 
 // -------------------------------------------------
