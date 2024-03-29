@@ -102,7 +102,7 @@ function elisc_tm_page_transition() {
 		var href = element.attr('href');
 		if (element.parent().hasClass('elisc_tm_button')) {
 			jQuery('.menu .transition_link a[href="' + href + '"]').trigger('click');
-			hashtag();
+			// hashtag();
 			return false;
 		}
 		var sectionID = jQuery(href);
@@ -276,6 +276,7 @@ function elisc_tm_modalbox_portfolio() {
 
 	var modalBox = jQuery('.elisc_tm_modalbox');
 	var button = jQuery('.elisc_tm_portfolio .portfolio_popup');
+	var closePopup = modalBox.find('.close');
 
 	button.on('click', function () {
 		var element = jQuery(this);
@@ -294,6 +295,13 @@ function elisc_tm_modalbox_portfolio() {
 		// var hasCarousel = modalBox.hasClass('.owl-carousel');
 		// console.log(hasCarousel);
 		portfolio_popup_carousel();
+		return false;
+	});
+
+	closePopup.on('click', function () {
+		modalBox.removeClass('opened');
+		$(".owl-carousel").trigger('destroy.owl.carousel');
+		modalBox.find('.description_wrap').html('');
 		return false;
 	});
 }
@@ -604,49 +612,50 @@ function portfolio_popup_carousel() {
 	// 	return;
 	// }
 	// isBind = true;
-	// var carousel4 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
+	var carousel4 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
 
 
-	// carousel4.each(function () {
-	// 	var element = jQuery(this);
-	// element.trigger('destroy.owl.carousel');
-	$(".owl-carousel").owlCarousel({
-		loop: false,
-		items: 3,
-		lazyLoad: false,
-		margin: 10,
-		autoplay: false,
-		autoplayTimeout: 7000,
-		rtl: false,
-		dots: true,
-		nav: false,
-		navSpeed: false,
-		responsive: {
-			0: {
-				items: 1
-			},
-			768: {
-				items: 2
-			},
-			1040: {
-				items: 3
+	carousel4.each(function () {
+		var element = jQuery(this);
+		// element.trigger('destroy.owl.carousel');
+		element.owlCarousel({
+			loop: false,
+			items: 5,
+			lazyLoad: false,
+			margin: 10,
+			autoplay: false,
+			autoplayTimeout: 7000,
+			mouseDrag: true,
+			rtl: false,
+			dots: true,
+			nav: false,
+			navSpeed: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				1040: {
+					items: 3
+				}
 			}
-		}
-	});
+		});
 
-	element.closest('.popup_details').find('.popup_next_button').click(function () {
-		element.trigger('next.owl.carousel');
-		return false;
-	});
-	// Go to the previous item
-	element.closest('.popup_details').find('.popup_prev_button').click(function () {
-		// With optional speed parameter
-		// Parameters has to be in square bracket '[]'
-		element.trigger('prev.owl.carousel');
-		return false;
-	});
+		element.closest('.popup_details').find('.popup_next_button').click(function () {
+			element.trigger('next.owl.carousel');
+			return false;
+		});
+		// Go to the previous item
+		element.closest('.popup_details').find('.popup_prev_button').click(function () {
+			// With optional speed parameter
+			// Parameters has to be in square bracket '[]'
+			element.trigger('prev.owl.carousel');
+			return false;
+		});
 
-	// });
+	});
 }
 
 // -------------------------------------------------
