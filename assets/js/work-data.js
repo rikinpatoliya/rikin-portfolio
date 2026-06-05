@@ -1,10 +1,10 @@
 // ============================================================
-// Work Experience Data Model
-// To add a new work experience, add a new object to the array below.
-// To edit an experience, update its object.
-// To remove an experience, delete its object.
-// No changes needed anywhere else in the codebase.
+// Work Experience Data Model & Global Settings
+// Modify these constants to update your years of experience
+// and live apps count everywhere across the website.
 // ============================================================
+const YEARS_OF_EXPERIENCE = "8+";
+const LIVE_APPS_COUNT = "15+";
 
 const workExperience = [
   {
@@ -115,4 +115,27 @@ function renderWorkTimeline() {
   });
 
   container.insertAdjacentHTML("beforeend", html);
+}
+
+// ============================================================
+// updateGlobalStats()
+// Scans the DOM and dynamically sets years of experience 
+// and live apps count variables from the top constants.
+// ============================================================
+function updateGlobalStats() {
+  var yearsExpElements = document.querySelectorAll(".global-years-exp");
+  yearsExpElements.forEach(function (el) {
+    el.textContent = YEARS_OF_EXPERIENCE;
+  });
+
+  var yearsPlain = YEARS_OF_EXPERIENCE.replace("+", "");
+  var yearsPlainElements = document.querySelectorAll(".global-years-exp-plain");
+  yearsPlainElements.forEach(function (el) {
+    el.textContent = yearsPlain;
+  });
+
+  var liveAppsElements = document.querySelectorAll(".global-live-apps");
+  liveAppsElements.forEach(function (el) {
+    el.textContent = LIVE_APPS_COUNT;
+  });
 }

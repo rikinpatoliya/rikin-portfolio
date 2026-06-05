@@ -4184,6 +4184,7 @@ jQuery(document).ready(function ($) {
     revealDuration = 600,
     revealAnimationDelay = 1500;
 
+  window.initHeadline = initHeadline;
   initHeadline();
 
 

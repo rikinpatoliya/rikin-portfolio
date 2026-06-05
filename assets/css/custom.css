@@ -1353,7 +1353,7 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     text-align: center;
     box-shadow: 0 2px 4px rgba(148, 163, 184, 0.03);
-    min-w-[120px];
+    min-width: 120px;
     transition: all 0.3s ease;
 }
 
@@ -1388,5 +1388,23 @@ body::-webkit-scrollbar-thumb {
         left: 20px;
         top: 6px;
         transform: translateX(-50%);
+    }
+}
+
+/* Portfolio grid item responsiveness */
+@media (max-width: 1040px) {
+    .elisc_tm_portfolio .gallery_zoom li {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .elisc_tm_portfolio .gallery_zoom li {
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+    
+    .elisc_tm_topbar .logo .text {
+        font-size: 20px !important;
     }
 }
