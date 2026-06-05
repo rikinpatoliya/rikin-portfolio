@@ -4,7 +4,7 @@
  * This file is made for CURRENT TEMPLATE
 */
 
-jQuery(document).ready(function () {
+window.initializePortfolio = function () {
 
 	"use strict";
 
@@ -29,14 +29,14 @@ jQuery(document).ready(function () {
 	elisc_tm_down();
 	elisc_tm_location();
 
-	jQuery(window).load('body', function () {
-		elisc_tm_my_load();
-	});
+	elisc_tm_my_load();
+
 	jQuery(window).on('resize', function () {
 		elisc_tm_menu_closer();
 	});
 
-});
+};
+
 
 // -----------------------------------------------------
 // ---------------   FUNCTIONS    ----------------------
@@ -274,34 +274,93 @@ function elisc_tm_modalbox_portfolio() {
 
 	"use strict";
 
-	var modalBox = jQuery('.elisc_tm_modalbox');
+	var detailSection = jQuery('#portfolio-detail');
+	var portfolioSection = jQuery('#portfolio');
 	var button = jQuery('.elisc_tm_portfolio .portfolio_popup');
-	var closePopup = modalBox.find('.close');
 
-	button.on('click', function () {
+	button.off('click').on('click', function () {
 		var element = jQuery(this);
 		var parent = element.closest('li');
 		var image = parent.find('.image .main').data('img-url');
-		var details = parent.find('.hidden_content_portfolio').html();
 		var category = parent.find('.details .category').html();
 		var title = parent.find('.details .title a').text();
 
+		var hiddenContent = parent.find('.hidden_content_portfolio');
+		var textboxHtml = hiddenContent.find('.textbox').html() || '';
+		var screenshotsBlock = hiddenContent.find('.portfolio_list1');
+		var screenshotsHtml = screenshotsBlock.length
+			? screenshotsBlock.closest('[class*="tm_content"]').prop('outerHTML')
+			: '';
 
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(details);
-		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="assets/img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="' + image + '"></div></div>');
-		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><span class="category">' + category + '</span><h3 class="title">' + title + '</h3></div>');
+		// Store badges inline next to title
+		var storeLinksHtml = '';
+		var gpAnchor = hiddenContent.find('.detailbox a[href*="play.google"]');
+		var asAnchor = hiddenContent.find('.detailbox a[href*="apple.com"]');
+		if (gpAnchor.length || asAnchor.length) {
+			storeLinksHtml += '<div class="detail_store_links" style="display:flex;align-items:center;gap:10px;margin-top:10px;">';
+			if (gpAnchor.length) storeLinksHtml += '<a href="' + gpAnchor.attr('href') + '" target="_blank"><img src="' + gpAnchor.find('img').attr('src') + '" alt="Google Play" style="height:36px;" /></a>';
+			if (asAnchor.length) storeLinksHtml += '<a href="' + asAnchor.attr('href') + '" target="_blank"><img src="' + asAnchor.find('img').attr('src') + '" alt="App Store" style="height:36px;" /></a>';
+			storeLinksHtml += '</div>';
+		}
+
+		var html = '';
+		html += '<div class="elisc_tm_portfolio_detail w-full float-left pb-[120px]">';
+
+		// Sticky back bar
+		html += '<div class="detail_back_sticky" style="position:sticky;top:0;z-index:50;background:#fff;padding:18px 20px;border-bottom:1px solid rgba(0,0,0,.08);">';
+		html += '  <a class="portfolio_detail_back" href="#" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;font-size:14px;font-weight:500;">';
+		html += '    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>';
+		html += '    Back to Portfolio';
+		html += '  </a>';
+		html += '</div>';
+
+		html += '<div class="tm_content w-full max-w-[1250px] h-auto clear-both my-0 mx-auto py-0 px-[20px]" style="padding-top:40px;">';
+
+		// Hero image
+		html += '<div class="top_image w-full float-left mb-[40px]" style="height:400px;border-radius:8px;overflow:hidden;background-size:cover;background-position:center;background-image:url(' + image + ');">';
+		html += '  <img src="assets/img/thumbs/4-2.jpg" alt="" style="opacity:0;min-width:100%;" />';
+		html += '</div>';
+
+		// Title + store badges on same row
+		html += '<div class="portfolio_main_title mb-[40px]">';
+		html += '  <span class="category" style="display:inline-block;margin-bottom:8px;font-size:13px;text-transform:uppercase;font-weight:500;opacity:.6;">' + category + '</span>';
+		html += '  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;">';
+		html += '    <h3 class="title" style="font-size:32px;font-weight:800;margin:0;">' + title + '</h3>';
+		if (storeLinksHtml) html += storeLinksHtml;
+		html += '  </div>';
+		html += '</div>';
+
+		// Description text
+		html += '<div class="textbox mb-[40px]" style="opacity:.8;">' + textboxHtml + '</div>';
+
+		html += '</div>';
+
+		// Screenshots carousel wrapped in .popup_details so portfolio_popup_carousel() selector matches
+		if (screenshotsHtml) html += '<div class="popup_details">' + screenshotsHtml + '</div>';
+
+		html += '</div>';
+
+		detailSection.html(html);
+
+		jQuery('.elisc_tm_section').removeClass('active animated').addClass('hidden');
+		detailSection.removeClass('hidden').addClass('active animated');
+
+		jQuery('.transition_link li').removeClass('active');
+		jQuery('.transition_link li a[href="#portfolio"]').parent().addClass('active');
+
+		detailSection[0].scrollTop = 0;
+
 		elisc_tm_data_images();
-		// var hasCarousel = modalBox.hasClass('.owl-carousel');
-		// console.log(hasCarousel);
 		portfolio_popup_carousel();
-		return false;
-	});
 
-	closePopup.on('click', function () {
-		modalBox.removeClass('opened');
-		$(".owl-carousel").trigger('destroy.owl.carousel');
-		modalBox.find('.description_wrap').html('');
+		detailSection.find('.portfolio_detail_back').off('click').on('click', function () {
+			detailSection.find('.owl-carousel').trigger('destroy.owl.carousel');
+			detailSection.html('');
+			jQuery('.elisc_tm_section').removeClass('active animated').addClass('hidden');
+			portfolioSection.removeClass('hidden').addClass('active animated');
+			return false;
+		});
+
 		return false;
 	});
 }
@@ -608,21 +667,16 @@ function elisc_tm_owl_carousel() {
 // var isBind = false;
 function portfolio_popup_carousel() {
 
-	// if (isBind) {
-	// 	return;
-	// }
-	// isBind = true;
-	var carousel4 = jQuery('.popup_details .portfolio_list1 .owl-carousel');
-
+	var carousel4 = jQuery('#portfolio-detail .popup_details .portfolio_list1 .owl-carousel');
 
 	carousel4.each(function () {
 		var element = jQuery(this);
 		// element.trigger('destroy.owl.carousel');
 		element.owlCarousel({
 			loop: false,
-			items: 5,
+			items: 4,
 			lazyLoad: false,
-			margin: 10,
+			margin: 15,
 			autoplay: false,
 			autoplayTimeout: 7000,
 			mouseDrag: true,
@@ -634,21 +688,24 @@ function portfolio_popup_carousel() {
 				0: {
 					items: 1
 				},
-				768: {
+				600: {
 					items: 2
 				},
 				1040: {
 					items: 3
+				},
+				1400: {
+					items: 4
 				}
 			}
 		});
 
-		element.closest('.popup_details').find('.popup_next_button').click(function () {
+		element.closest('.popup_details').find('.popup_next_button').off('click').on('click', function () {
 			element.trigger('next.owl.carousel');
 			return false;
 		});
 		// Go to the previous item
-		element.closest('.popup_details').find('.popup_prev_button').click(function () {
+		element.closest('.popup_details').find('.popup_prev_button').off('click').on('click', function () {
 			// With optional speed parameter
 			// Parameters has to be in square bracket '[]'
 			element.trigger('prev.owl.carousel');
