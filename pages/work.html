@@ -1,12 +1,48 @@
+<style>
+.work-header-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    margin-bottom: 50px !important;
+    width: 100% !important;
+}
+
+.work-header-container .left-content {
+    max-width: 700px !important;
+    flex: 1 !important;
+}
+
+.work-stats-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+    flex-shrink: 0 !important;
+    align-items: center !important;
+}
+
+@media (max-width: 768px) {
+    .work-header-container {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 30px !important;
+    }
+    .work-stats-wrapper {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+}
+</style>
+
 <div class="elisc_tm_services w-full float-left pt-[110px]">
     <div class="tm_content w-full max-w-[1250px] h-auto clear-both my-0 mx-auto py-0 px-[20px]">
-        <div class="w-full float-left flex flex-col md:flex-row justify-between items-start md:items-end gap-[30px] mb-[50px]">
-            <div class="max-w-[700px] float-left">
+        <div class="work-header-container">
+            <div class="left-content">
                 <span class="text-xs font-semibold tracking-[2px] text-blue-600 uppercase mb-[12px] block">Professional Journey</span>
                 <h3 class="text-[40px] font-extrabold text-[#130F49] leading-tight mb-[16px]">Building robust mobile ecosystems.</h3>
                 <p class="text-[#55527C] text-sm opacity-[0.8] leading-relaxed">Detailed timeline of my technical contributions, leadership roles, and architectural impact across diverse industries.</p>
             </div>
-            <div class="flex gap-[16px] self-stretch md:self-auto shrink-0">
+            <div class="work-stats-wrapper">
                 <div class="stats-card">
                     <span class="text-[26px] font-extrabold text-[#130F49] leading-none global-years-exp">8+</span>
                     <span class="text-[11px] text-gray-500 font-semibold mt-[6px]">Years Exp.</span>

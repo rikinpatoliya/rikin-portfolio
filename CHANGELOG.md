@@ -4,6 +4,13 @@ All notable changes to this project are documented here.
 
 ---
 
+## [2026-06-09] — Right-Aligned Stats Layout Fix & Cache-Busting
+
+### Fixed
+- `pages/work.html` — injected custom flexbox styling (`.work-header-container` and `.work-stats-wrapper`) directly in the HTML view using inline CSS (with `!important`) to ensure that stats cards are aligned side-by-side on the right of the header text block on desktop, bypassing lack of Tailwind CSS parser and any browser CSS caching.
+- `index.html` — added version query parameters (`?v=1.0.2` and cache buster on pages load array) to force reload JS and HTML files, resolving persistent browser caching issues.
+- `index.html` — reordered stylesheet imports so `custom.css` is loaded last.
+
 ## [2026-06-05] — Right-Aligned Dynamic Stats & Variables
 
 ### Added

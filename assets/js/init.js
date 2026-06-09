@@ -293,14 +293,12 @@ function elisc_tm_modalbox_portfolio() {
 			: '';
 
 		// Store badges inline next to title
-		var storeLinksHtml = '';
 		var gpAnchor = hiddenContent.find('.detailbox a[href*="play.google"]');
 		var asAnchor = hiddenContent.find('.detailbox a[href*="apple.com"]');
+		var storeLinksHtml = '';
 		if (gpAnchor.length || asAnchor.length) {
-			storeLinksHtml += '<div class="detail_store_links" style="display:flex;align-items:center;gap:10px;margin-top:10px;">';
-			if (gpAnchor.length) storeLinksHtml += '<a href="' + gpAnchor.attr('href') + '" target="_blank"><img src="' + gpAnchor.find('img').attr('src') + '" alt="Google Play" style="height:36px;" /></a>';
-			if (asAnchor.length) storeLinksHtml += '<a href="' + asAnchor.attr('href') + '" target="_blank"><img src="' + asAnchor.find('img').attr('src') + '" alt="App Store" style="height:36px;" /></a>';
-			storeLinksHtml += '</div>';
+			if (gpAnchor.length) storeLinksHtml += '<a href="' + gpAnchor.attr('href') + '" target="_blank" style="display:inline-block;line-height:0;"><img src="' + gpAnchor.find('img').attr('src') + '" alt="Google Play" style="height:42px;display:block;" /></a>';
+			if (asAnchor.length) storeLinksHtml += '<a href="' + asAnchor.attr('href') + '" target="_blank" style="display:inline-block;line-height:0;"><img src="' + asAnchor.find('img').attr('src') + '" alt="App Store" style="height:42px;display:block;" /></a>';
 		}
 
 		var html = '';
@@ -321,13 +319,20 @@ function elisc_tm_modalbox_portfolio() {
 		html += '  <img src="assets/img/thumbs/4-2.jpg" alt="" style="opacity:0;min-width:100%;" />';
 		html += '</div>';
 
-		// Title + store badges on same row
-		html += '<div class="portfolio_main_title mb-[40px]">';
-		html += '  <span class="category" style="display:inline-block;margin-bottom:8px;font-size:13px;text-transform:uppercase;font-weight:500;opacity:.6;">' + category + '</span>';
-		html += '  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;">';
-		html += '    <h3 class="title" style="font-size:32px;font-weight:800;margin:0;">' + title + '</h3>';
-		if (storeLinksHtml) html += storeLinksHtml;
+		// Clean the category text: if it contains an anchor link, get the text inside
+		var cleanCategory = jQuery('<div>').html(category).text().trim();
+
+		// Title + store badges on same row (left-aligned title, right-aligned store links)
+		html += '<div class="portfolio-detail-header">';
+		html += '  <div class="left-side">';
+		html += '    <span class="category">' + cleanCategory + '</span>';
+		html += '    <h3 class="title">' + title + '</h3>';
 		html += '  </div>';
+		if (storeLinksHtml) {
+			html += '  <div class="right-side">';
+			html += storeLinksHtml;
+			html += '  </div>';
+		}
 		html += '</div>';
 
 		// Description text

@@ -22,9 +22,9 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kristi&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/plugins.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/modalbox.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css?v=1.0.4" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
     <!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
 
@@ -174,17 +174,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
     <!-- NOTE: prior to v2.2.1 tiny-slider.js need to be in <body> -->
     <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/portfolio-data.js"></script>
-    <script src="assets/js/work-data.js"></script>
-    <script src="assets/js/init.js"></script>
+    <script src="assets/js/portfolio-data.js?v=1.0.2"></script>
+    <script src="assets/js/work-data.js?v=1.0.2"></script>
+    <script src="assets/js/init.js?v=1.0.4"></script>
     <script>
         $(document).ready(function() {
+            var version = "1.0.4";
             var pages = [
-                { id: '#home', url: 'pages/home.html' },
-                { id: '#about', url: 'pages/about.html' },
-                { id: '#work', url: 'pages/work.html' },
-                { id: '#portfolio', url: 'pages/portfolio.html' },
-                { id: '#contact', url: 'pages/contact.html' }
+                { id: '#home', url: 'pages/home.html?v=' + version },
+                { id: '#about', url: 'pages/about.html?v=' + version },
+                { id: '#work', url: 'pages/work.html?v=' + version },
+                { id: '#portfolio', url: 'pages/portfolio.html?v=' + version },
+                { id: '#contact', url: 'pages/contact.html?v=' + version }
             ];
 
             var loadedCount = 0;
