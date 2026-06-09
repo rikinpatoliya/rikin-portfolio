@@ -14,9 +14,13 @@ const workExperience = [
     isActive: true,
     tags: ["Flutter", "Dart", "Clean Architecture", "Firebase", "Stripe"],
     achievements: [
-      "Design and implement complex features and workflows with third-party APIs (Google Maps, Geofencing, Stripe, Firebase).",
-      "Architected and built 8+ medium-to-large-size cross-platform applications in Flutter (CRM, HRMS, Order Booking, co-working, healthcare, cinema).",
-      "Maintained, debugged, and optimized legacy codebases to ensure high performance and seamless user experiences."
+      "Led a team of 2 mobile developers, driving code reviews, task planning, technical guidance, and mentoring to ensure consistent delivery quality.",
+      "Participated in technical interviews, effort estimation, sprint planning, and project delivery discussions with cross-functional stakeholders.",
+      "Architected and delivered 15+ Flutter and Android applications across news, CRM, HRMS, healthcare, booking, and enterprise automation domains.",
+      " Designed scalable mobile architectures using Flutter, MVVM, Clean Architecture, Firebase, REST APIs, Supabase, Directus, and BLE integrations.",
+      "Improved application stability through crash analysis, memory optimization, and Firebase Crashlytics monitoring, significantly reducing production issues.",
+      "Managed end-to-end Play Store releases, production support, and feature deployments; contributed to Rumble: Stream & Watch Videos (5M+ downloads)."
+
     ]
   },
   {
@@ -26,9 +30,11 @@ const workExperience = [
     isActive: false,
     tags: ["Flutter", "Android", "REST APIs", "Git"],
     achievements: [
-      "Developed MovieEcard, Cinema ticket booking, social sharing, and promotional apps.",
-      "Analyzed requirements and created functional specifications to guide the development cycle.",
-      "Devised comprehensive documentation for each app detailing functional capabilities and deployment workflows."
+      "Developed and maintained Android applications for Carnival Cinema, supporting movie ticket booking, promotional campaigns, and customer engagement workflows.",
+      "Built real-time movie ticket booking features including seat selection, booking synchronization, coupon management, and transaction processing.",
+      "Integrated multiple payment solutions including Credit/Debit Cards, Wallets, Razorpay, and PhonePe to enable secure and seamless payment experiences.",
+      "Developed features using Java and Kotlin while integrating REST APIs and optimizing application performance for a smooth user experience.",
+      "Collaborated with product, backend, and QA teams to deliver production-ready releases, troubleshoot issues, and maintain application stability."
     ]
   },
   {
@@ -38,9 +44,10 @@ const workExperience = [
     isActive: false,
     tags: ["Java", "Android SDK", "Native Modules", "E-Commerce"],
     achievements: [
-      "Created custom e-commerce and utility mobile applications using native Android technologies.",
-      "Led a team of developers in the product creation cycle, ensuring highly structured and clean codebases.",
-      "Provided post-launch support and troubleshooting, ensuring maximum runtime stability and client satisfaction."
+      "Developed and maintained Android applications using Java, including e-commerce and service-based platforms.",
+      "Built user-facing features, integrated REST APIs, and implemented dynamic UI components to support business requirements.",
+      "Integrated Firebase services including Analytics, Crashlytics, and Push Notifications to improve user engagement and application monitoring.",
+      "Performed debugging, issue resolution, and performance improvements to enhance application stability and user experience."
     ]
   },
   {
@@ -50,9 +57,10 @@ const workExperience = [
     isActive: false,
     tags: ["Android UI", "Java", "SDK Integration", "Debugging"],
     achievements: [
-      "Coordinated with senior developers to design and modularize event booking and travel app components.",
-      "Identified, debugged, and resolved runtime errors reported during QA and testing phases.",
-      "Maintained detailed documentation of mobile development pipelines and API integrations."
+      "Developed Android applications for event and travel ticket booking using Java and Android SDK.",
+      "Implemented real-time ticket booking workflows, seat selection, and booking management features.",
+      "Integrated payment methods including Credit Cards, Debit Cards, and Net Banking to support secure online transactions.",
+      "Worked with REST APIs, debugging, testing, and application maintenance to ensure reliable user experiences."
     ]
   }
 ];
